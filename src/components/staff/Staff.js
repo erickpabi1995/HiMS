@@ -49,9 +49,9 @@ const Staff = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    alert(newPatient.id)
+
     try {
-      if (newPatient.id > 0) {
+      if (patient_id > 0) {
         //update the record
         let updateUser = {
           facility: newUser.facility,
@@ -83,7 +83,7 @@ const Staff = () => {
           religion: newPatient.religion,
           user: updateUser,
         }
-        // console.log(updatePatient)
+        console.log(updatePatient)
         await DataService.updateItem(API_URL_STAFF, newPatient.id, updatePatient)
           .then((res) => {
             let result = res.data
@@ -101,12 +101,12 @@ const Staff = () => {
           created_by: UserProfile.getUserId(),
         }
 
-        let postPatient = {
+        let postStaff = {
           ...newPatient,
           user,
         }
-        // console.log(postPatient)
-        await DataService.createItem(API_URL_STAFF, postPatient)
+        console.log(postStaff)
+        await DataService.createItem(API_URL_STAFF, postStaff)
           .then((res) => {
             let result = res.data
             setUserId(result.id)

@@ -11,19 +11,42 @@ import {
 import PropTypes from 'prop-types'
 
 const Create = ({ newItem, setNewItem, selectItemList }) => {
+  let type_list = [
+    'NATIONALITY',
+    'REGION',
+    'DISTRICT',
+    'TOWN',
+    'OCCUPATION',
+    'RELIGION',
+    'TITLE',
+    'GENDER',
+    'MARITAL_STATUS',
+    'STAFF_TYPE',
+    'FACILITY_CATEGORY',
+  ]
   return (
     <CRow>
       <CRow className="mb-3">
         <CCol md={12}>
           <CFormFloating>
-            <CFormInput
+            <CFormSelect
               id="type"
               required
               value={newItem.type}
               onChange={(e) => setNewItem({ ...newItem, type: e.target.value })}
-            />
-            <CFormLabel htmlFor="type">Type</CFormLabel>
-            <CFormFeedback invalid>Please provide the item type.</CFormFeedback>
+            >
+              <option value="">...choose...</option>
+
+              {type_list.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </CFormSelect>
+            <CFormLabel className="" htmlFor="category">
+              Type *
+            </CFormLabel>
+            <CFormFeedback invalid>Please select the type.</CFormFeedback>
           </CFormFloating>
 
           <br />

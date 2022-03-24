@@ -11,7 +11,6 @@ import {
 } from '@coreui/react'
 import PropTypes from 'prop-types'
 import { DocsExample } from 'src/components'
-import photo from './../../assets/images/avatars/6.jpg'
 
 const Detail = ({ newUser, newPatient }) => {
   return (
@@ -91,7 +90,7 @@ const Detail = ({ newUser, newPatient }) => {
               </CTableRow>
               <CTableRow>
                 <CTableHeaderCell colSpan={2}>
-                  <CImage align="end" src={photo} />
+                  <CImage className="detail_photo" align="end" src={newUser.photo_url} />
                 </CTableHeaderCell>
               </CTableRow>
             </CTableBody>

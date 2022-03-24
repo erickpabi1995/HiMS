@@ -26,12 +26,20 @@ const CreateModal = ({
   facilityList,
 }) => {
   const [validated, setValidated] = useState(false)
+  const [confirmPassword, setConfirmPassword] = useState('')
+
   const handleValidation = (event) => {
     const form = event.currentTarget
+
     if (form.checkValidity() === false) {
       event.preventDefault()
       event.stopPropagation()
+    } else if (newUser.password !== confirmPassword) {
+      alert('The password does not match the confirmation')
+      event.preventDefault()
+      event.stopPropagation()
     } else {
+      setValidated(false)
       handleSubmit(event)
     }
     setValidated(true)
@@ -59,6 +67,8 @@ const CreateModal = ({
               setNewUser={setNewUser}
               newPatient={newPatient}
               setNewPatient={setNewPatient}
+              confirmPassword={confirmPassword}
+              setConfirmPassword={setConfirmPassword}
               groupList={groupList}
               defaultGroup={defaultGroup}
               selectItemList={selectItemList}

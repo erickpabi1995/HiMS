@@ -69,7 +69,7 @@ const Detail = ({ newItem }) => {
               </CTableRow>
               <CTableRow>
                 <CTableHeaderCell colSpan={2}>
-                  <CImage className="detail_photo" align="end" src={newItem.photo_url} />
+                  <CImage align="end" src={photo} />
                 </CTableHeaderCell>
               </CTableRow>
             </CTableBody>

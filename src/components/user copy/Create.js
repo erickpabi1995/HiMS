@@ -10,37 +10,7 @@ import {
 } from '@coreui/react'
 import PropTypes from 'prop-types'
 
-const Create = ({
-  newItem,
-  setNewItem,
-  groupList,
-  selectItemList,
-  facilityList,
-  confirmPassword,
-  setConfirmPassword,
-}) => {
-  const convertToBase64 = async (file) => {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader()
-      fileReader.readAsDataURL(file)
-      fileReader.onload = () => {
-        resolve(fileReader.result)
-      }
-      fileReader.onerror = (error) => {
-        reject(error)
-      }
-    })
-  }
-
-  const handleUserImage = async (e) => {
-    const file = e.target.files[0]
-    const base64 = await convertToBase64(file)
-    let userItem = {
-      ...newItem,
-      photo_url: base64.toString(),
-    }
-    setNewItem(userItem)
-  }
+const Create = ({ newItem, setNewItem, groupList, selectItemList, facilityList }) => {
   return (
     <main>
       <CRow className="mb-3">
@@ -302,8 +272,6 @@ const Create = ({
               name="confirm_password"
               type="password"
               required
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
             ></CFormInput>
             <CFormLabel className="" htmlFor="confirm_password">
               Confirm Password *
@@ -319,7 +287,8 @@ const Create = ({
               id="photo_url"
               name="photo_url"
               type="file"
-              onChange={(e) => handleUserImage(e)}
+              value={newItem.photo_url}
+              onChange={(e) => setNewItem({ ...newItem, photo_url: null })}
             ></CFormInput>
           </CFormFloating>
         </CCol>
@@ -336,6 +305,4 @@ Create.propTypes = {
   groupList: PropTypes.array.isRequired,
   selectItemList: PropTypes.array.isRequired,
   facilityList: PropTypes.array.isRequired,
-  confirmPassword: PropTypes.string.isRequired,
-  setConfirmPassword: PropTypes.func.isRequired,
 }

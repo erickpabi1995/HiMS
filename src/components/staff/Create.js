@@ -19,7 +19,32 @@ const Create = ({
   groupList,
   selectItemList,
   facilityList,
+  confirmPassword,
+  setConfirmPassword,
 }) => {
+  const convertToBase64 = async (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader()
+      fileReader.readAsDataURL(file)
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      }
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
+  }
+
+  const handleUserImage = async (e) => {
+    const file = e.target.files[0]
+    const base64 = await convertToBase64(file)
+    let userItem = {
+      ...newUser,
+      photo_url: base64.toString(),
+    }
+    setNewUser(userItem)
+  }
+
   return (
     <CRow>
       <CRow className="mb-3">
@@ -84,7 +109,7 @@ const Create = ({
               <option value="">...choose...</option>
 
               {selectItemList
-                .filter((selectItem) => selectItem.type === 'title')
+                .filter((selectItem) => selectItem.type === 'TITLE')
                 .map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.text}
@@ -172,7 +197,7 @@ const Create = ({
               <option value="">...choose...</option>
 
               {selectItemList
-                .filter((selectItem) => selectItem.type === 'gender')
+                .filter((selectItem) => selectItem.type === 'GENDER')
                 .map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.text}
@@ -198,7 +223,7 @@ const Create = ({
               <option value="">...choose...</option>
 
               {selectItemList
-                .filter((selectItem) => selectItem.type === 'marital_status')
+                .filter((selectItem) => selectItem.type === 'MARITAL_STATUS')
                 .map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.text}
@@ -223,7 +248,7 @@ const Create = ({
               <option value="">...choose...</option>
 
               {selectItemList
-                .filter((selectItem) => selectItem.type === 'nationality')
+                .filter((selectItem) => selectItem.type === 'NATIONALITY')
                 .map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.text}
@@ -262,7 +287,7 @@ const Create = ({
               <option value="">...choose...</option>
 
               {selectItemList
-                .filter((selectItem) => selectItem.type === 'occupation')
+                .filter((selectItem) => selectItem.type === 'OCCUPATION')
                 .map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.text}
@@ -317,7 +342,7 @@ const Create = ({
               <option value="">...choose...</option>
 
               {selectItemList
-                .filter((selectItem) => selectItem.type === 'religion')
+                .filter((selectItem) => selectItem.type === 'RELIGION')
                 .map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.text}
@@ -403,8 +428,8 @@ const Create = ({
               name="confirm_password"
               type="password"
               required
-              value={newUser.confirm_password}
-              // onChange={(e) => setNewUser({ ...newUser, confirm_password: e.target.value })}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
             ></CFormInput>
             <CFormLabel className="" htmlFor="confirm_password">
               Confirm Password *
@@ -417,8 +442,7 @@ const Create = ({
               id="photo_url"
               name="photo_url"
               type="file"
-              value={newUser.photo_url}
-              onChange={(e) => setNewUser({ ...newUser, photo_url: null })}
+              onChange={(e) => handleUserImage(e)}
             ></CFormInput>
           </CFormFloating>
 
@@ -484,4 +508,6 @@ Create.propTypes = {
   groupList: PropTypes.array.isRequired,
   selectItemList: PropTypes.array.isRequired,
   facilityList: PropTypes.array.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
+  setConfirmPassword: PropTypes.func.isRequired,
 }

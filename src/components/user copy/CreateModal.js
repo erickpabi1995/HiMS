@@ -23,15 +23,9 @@ const CreateModal = ({
   facilityList,
 }) => {
   const [validated, setValidated] = useState(false)
-  const [confirmPassword, setConfirmPassword] = useState('')
-
   const handleValidation = (event) => {
     const form = event.currentTarget
     if (form.checkValidity() === false) {
-      event.preventDefault()
-      event.stopPropagation()
-    } else if (newItem.password !== confirmPassword) {
-      alert('The password does not match the confirmation')
       event.preventDefault()
       event.stopPropagation()
     } else {
@@ -60,8 +54,6 @@ const CreateModal = ({
             <Create
               newItem={newItem}
               setNewItem={setNewItem}
-              confirmPassword={confirmPassword}
-              setConfirmPassword={setConfirmPassword}
               groupList={groupList}
               selectItemList={selectItemList}
               facilityList={facilityList}

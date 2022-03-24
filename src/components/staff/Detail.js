@@ -91,7 +91,7 @@ const Detail = ({ newUser, newPatient }) => {
               </CTableRow>
               <CTableRow>
                 <CTableHeaderCell colSpan={2}>
-                  <CImage align="end" src={photo} />
+                  <CImage className="detail_photo" align="end" src={newUser.photo_url} />
                 </CTableHeaderCell>
               </CTableRow>
             </CTableBody>

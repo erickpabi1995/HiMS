@@ -10,7 +10,27 @@ const User = () => {
   const API_URL_FACILITY = 'facility/'
 
   const [items, setItems] = useState([{}])
-  const [newItem, setNewItem] = useState([{}])
+  const [newItem, setNewItem] = useState([
+    {
+      facility: '',
+      group: '',
+      username: '',
+      first_name: '',
+      middle_name: '',
+      last_name: '',
+      date_of_birth: '',
+      gender: '',
+      email: '',
+      nationality: '',
+      nationality_ID: '',
+      marital_status: '',
+      primary_phone: '',
+      secondary_phone: '',
+      photo_url: '',
+      password: '',
+      created_by: '',
+    },
+  ])
 
   const [id, setId] = useState(0)
   const [showCreateForm, setShowCreateForm] = useState(false)
@@ -47,7 +67,7 @@ const User = () => {
           created_by: UserProfile.getUserId(),
         }
 
-        // console.log(postItem)
+        console.log(postItem)
         DataService.createItem(API_URL, postItem)
           .then((res) => {
             let result = res.data
@@ -118,19 +138,26 @@ const User = () => {
 
   const getItemsList = () => {
     DataService.getItemList(API_URL).then((res) => {
+      // console.log(res.data)
       setItems(res.data)
     })
   }
 
   const getISelectItemList = () => {
     DataService.getSelectItemList(API_URL_GROUP).then((res) => {
+      // console.log('Select Item')
+      console.log(res.data)
       setGroupList(res.data)
     })
     DataService.getSelectItemList(API_URL_ITEM).then((res) => {
+      // console.log('Select Item')
+      // console.log(res.data)
       setSelectItemList(res.data)
     })
 
     DataService.getSelectItemList(API_URL_FACILITY).then((res) => {
+      // console.log('facility')
+      // console.log(res.data)
       setFacilityList(res.data)
     })
   }

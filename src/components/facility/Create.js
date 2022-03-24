@@ -27,7 +27,7 @@ const Create = ({ newItem, setNewItem, selectItemList }) => {
               <option value="">...choose...</option>
 
               {selectItemList
-                .filter((selectItem) => selectItem.type === 'facility_category')
+                .filter((selectItem) => selectItem.type === 'FACILITY_CATEGORY')
                 .map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.text}
@@ -129,7 +129,7 @@ const Create = ({ newItem, setNewItem, selectItemList }) => {
               <option value="">...choose...</option>
 
               {selectItemList
-                .filter((selectItem) => selectItem.type === 'nationality')
+                .filter((selectItem) => selectItem.type === 'NATIONALITY')
                 .map((item) => (
                   <option key={item.id} value={item.id}>
                     {item.text}
@@ -156,7 +156,7 @@ const Create = ({ newItem, setNewItem, selectItemList }) => {
               {selectItemList
                 .filter(
                   (selectItem) =>
-                    selectItem.type === 'region' && selectItem.parent === newItem.country,
+                    selectItem.type === 'REGION' && selectItem.parent === newItem.country,
                 )
                 .map((item) => (
                   <option key={item.id} value={item.id}>
@@ -184,7 +184,7 @@ const Create = ({ newItem, setNewItem, selectItemList }) => {
               {selectItemList
                 .filter(
                   (selectItem) =>
-                    selectItem.type === 'district' && selectItem.parent === newItem.region,
+                    selectItem.type === 'DISTRICT' && selectItem.parent === newItem.region,
                 )
                 .map((item) => (
                   <option key={item.id} value={item.id}>
@@ -212,7 +212,7 @@ const Create = ({ newItem, setNewItem, selectItemList }) => {
               {selectItemList
                 .filter(
                   (selectItem) =>
-                    selectItem.type === 'town' && selectItem.parent === newItem.district,
+                    selectItem.type === 'TOWN' && selectItem.parent === newItem.district,
                 )
                 .map((item) => (
                   <option key={item.id} value={item.id}>

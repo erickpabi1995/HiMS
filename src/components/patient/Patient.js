@@ -52,29 +52,7 @@ const Patient = () => {
     e.preventDefault()
 
     try {
-      if (patient_id === 0) {
-        let user = {
-          ...newUser,
-          group: defaultGroup.id,
-          created_by: UserProfile.getUserId(),
-        }
-
-        let postPatient = {
-          ...newPatient,
-          user,
-        }
-
-        await DataService.createItem(API_URL_PATIENT, postPatient)
-          .then((res) => {
-            let result = res.data
-            setUserId(result.id)
-            const newUserList = [result, ...items]
-            setItems(newUserList)
-          })
-          .catch((err) => {
-            alert(err.message)
-          })
-      } else {
+      if (patient_id > 0) {
         let updateUser = {
           facility: newUser.facility,
           group: newUser.group,
@@ -111,6 +89,28 @@ const Patient = () => {
             let result = res.data
             let filteredList = items.filter((user) => user.id !== user_id)
             const newUserList = [result, ...filteredList]
+            setItems(newUserList)
+          })
+          .catch((err) => {
+            alert(err.message)
+          })
+      } else {
+        let user = {
+          ...newUser,
+          group: defaultGroup.id,
+          created_by: UserProfile.getUserId(),
+        }
+
+        let postPatient = {
+          ...newPatient,
+          user,
+        }
+        console.log(postPatient)
+        await DataService.createItem(API_URL_PATIENT, postPatient)
+          .then((res) => {
+            let result = res.data
+            setUserId(result.id)
+            const newUserList = [result, ...items]
             setItems(newUserList)
           })
           .catch((err) => {

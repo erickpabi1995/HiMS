@@ -20,7 +20,7 @@ class DataService {
   }
 
   updateItem = async (url, dataId, data) => {
-    console.log(BASE_URL + url + dataId + '/')
+    // console.log(BASE_URL + url + dataId + '/')
     return await axios.patch(BASE_URL + url + dataId + '/', data)
   }
 
