@@ -1,5 +1,5 @@
 var UserProfile = (function () {
-  let user_id = 76
+  let user_id = 1
   let userName = 'The Administrator'
   let group = 18
   let accessLevel = 4

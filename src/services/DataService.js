@@ -1,5 +1,5 @@
 import axios from 'axios'
-const BASE_URL = 'http://127.0.0.1:3500/api/'
+const BASE_URL = 'https://hims.pythonanywhere.com/api/'
 
 class DataService {
   getItemList = async (url) => {
